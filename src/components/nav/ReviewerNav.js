@@ -11,7 +11,7 @@ export const ReviewerNav = () => {
             </li>
             <li className="navbar__item navbar__logout">
                 <Link className="navbar__link" to="" onClick={() => {
-                    localStorage.removeItem("plant_user")
+                    localStorage.removeItem("hater_user")
                     navigate("/", {replace: true})
                 }}>Logout</Link>
             </li>

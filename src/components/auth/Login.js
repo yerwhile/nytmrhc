@@ -15,7 +15,7 @@ export const Login = () => {
             .then(foundUsers => {
                 if (foundUsers.length === 1) {
                     const user = foundUsers[0]
-                    localStorage.setItem("plant_user", JSON.stringify({
+                    localStorage.setItem("hater_user", JSON.stringify({
                         id: user.id,
                         admin: user.isAdmin
                     }))
@@ -32,7 +32,7 @@ export const Login = () => {
         <main className="container--login">
             <section>
                 <form className="form--login" onSubmit={handleLogin}>
-                    <h1>Plant Me!</h1>
+                    <h1>NYT Movie Reviews Haters Collective</h1>
                     <h2>Please sign in</h2>
                     <fieldset>
                         <label htmlFor="inputEmail"> Email address </label>
@@ -51,7 +51,7 @@ export const Login = () => {
                 </form>
             </section>
             <section className="link--register">
-                <Link to="/register">Not a planter yet?</Link>
+                <Link to="/register">Not a hater yet?</Link>
             </section>
         </main>
     )

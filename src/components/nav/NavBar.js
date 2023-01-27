@@ -3,10 +3,10 @@ import "./NavBar.css"
 import { ReviewerNav } from "./ReviewerNav"
 
 export const NavBar = () => {
-    const localPlantUser = localStorage.getItem('plant_user')
-    const plantUserObject = JSON.parse(localPlantUser)
+    const localHaterUser = localStorage.getItem('hater_user')
+    const haterUserObject = JSON.parse(localHaterUser)
 
-    if(plantUserObject.isAdmin) {
+    if(haterUserObject.isAdmin) {
         return <AdminNav />
     }
     else {
