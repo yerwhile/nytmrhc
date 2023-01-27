@@ -8,7 +8,7 @@ export const AdminNav = () => {
         <ul className="navbar">
             <li className="navbar__item navbar__logout">
                 <Link className="navbar__link" to="" onClick={() => {
-                    localStorage.removeItem("kandy_user")
+                    localStorage.removeItem("hater_user")
                     navigate("/", {replace: true})
                 }}>Logout</Link>
             </li>

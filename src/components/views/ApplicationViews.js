@@ -4,10 +4,10 @@ import { ReviewerViews } from "./ReviewerViews"
 
 
 export const ApplicationViews = () => {
-	const localPlantUser = localStorage.getItem('plant_user')
-    const plantUserObject = JSON.parse(localPlantUser)
+	const localHaterUser = localStorage.getItem('hater_user')
+    const haterUserObject = JSON.parse(localHaterUser)
 
-    if(plantUserObject.staff) {
+    if(haterUserObject.staff) {
         return <ReviewerViews />
     }
     else {
