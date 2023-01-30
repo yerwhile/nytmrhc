@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react"
 import Settings from "../Settings"
-import { TestItem } from "./TestItem"
+import { NYTReview } from "./NYTReview"
 
-export const Test = () => {
+export const NYTReviews = () => {
     const [searchResults, setSearchResults] = useState([])
 
     useEffect(() => {
@@ -18,10 +18,10 @@ export const Test = () => {
     <h2>List of Reviews</h2>
 
 
-    <ul className="plants">
+    <ul className="reviews">
         {
             searchResults.map(
-                (review) => <TestItem key={`review--${review.date_updated}`} review={review} />
+                (review) => <NYTReview key={`review--${review.date_updated}`} review={review} />
             )
         }
     </ul>
