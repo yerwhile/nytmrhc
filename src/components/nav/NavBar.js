@@ -1,16 +1,21 @@
-import { AdminNav } from "./AdminNav"
+import { Link, useNavigate } from "react-router-dom"
 import "./NavBar.css"
-import { ReviewerNav } from "./ReviewerNav"
 
 export const NavBar = () => {
-    const localHaterUser = localStorage.getItem('hater_user')
-    const haterUserObject = JSON.parse(localHaterUser)
+    const navigate = useNavigate()
 
-    if(haterUserObject.isAdmin) {
-        return <AdminNav />
-    }
-    else {
-        return <ReviewerNav />
-    }
+    return (
+        <ul className="navbar">
+            <li className="navbar__item navbar__test">
+                <Link className="navbar__link" to="nytReviews">Search NYT Reviews</Link>
+            </li>
+            <li className="navbar__item navbar__logout">
+                <Link className="navbar__link" to="" onClick={() => {
+                    localStorage.removeItem("hater_user")
+                    navigate("/", {replace: true})
+                }}>Logout</Link>
+            </li>
+        </ul>
+    )
 }
 

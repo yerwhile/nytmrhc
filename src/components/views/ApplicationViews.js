@@ -1,17 +1,24 @@
-import { AdminViews } from "./AdminViews"
-import { ReviewerViews } from "./ReviewerViews"
+import { Outlet, Route, Routes } from "react-router-dom"
+import { NYTReviews } from "../NYTReviews"
 
 
 
 export const ApplicationViews = () => {
-	const localHaterUser = localStorage.getItem('hater_user')
-    const haterUserObject = JSON.parse(localHaterUser)
+	return (
+        <Routes>
+            <Route path="/" element={
+                <>
+                    <h1>NYT Movie Review Haters</h1>
+                    <h3>Where grudges are screened daily.</h3>
 
-    if(haterUserObject.staff) {
-        return <ReviewerViews />
-    }
-    else {
-        return <AdminViews />
-    }
+                    <Outlet />
+                </>
+            }>
+
+                <Route path="nytReviews" element={ <NYTReviews /> } />
+
+            </Route>
+        </Routes>
+    )
 }
 

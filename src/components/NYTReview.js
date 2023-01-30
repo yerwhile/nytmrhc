@@ -1,4 +1,4 @@
-export const TestItem = ({review}) => {
+export const NYTReview = ({review}) => {
     return <li className="review">
                         <header>{review.display_title}</header>
                         <p>Rated: {review.mpaa_rating}</p>
