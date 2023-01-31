@@ -1,5 +1,7 @@
 import { Outlet, Route, Routes } from "react-router-dom"
-import { NYTReviews } from "../NYTReviews"
+import { NYTReviewForm } from "../nytReviews/NYTReviewForm"
+import { NYTReviewsSearch } from "../nytReviews/NYTReviewsSearch"
+import { Profile } from "../profiles/Profile"
 
 
 
@@ -15,7 +17,9 @@ export const ApplicationViews = () => {
                 </>
             }>
 
-                <Route path="nytReviews" element={ <NYTReviews /> } />
+                <Route path="nytReviews" element={ <NYTReviewsSearch /> } />
+                <Route path="nytReviews/:reviewId/:userId/create" element={ <NYTReviewForm /> } />
+                <Route path="profile" element={ <Profile />} />
 
             </Route>
         </Routes>
