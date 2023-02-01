@@ -1,8 +1,6 @@
+import { UserReview } from "./UserReview"
 
-
-import { NYTReview } from "./NYTReview"
-
-export const NYTReviews = ({searchResults}) => {
+export const UserReviews = ({searchResults}) => {
     
     return <>
     
@@ -11,7 +9,7 @@ export const NYTReviews = ({searchResults}) => {
     <ul className="reviews">
         {
             searchResults.map(
-                (review) => <NYTReview key={review.date_updated} review={review} />
+                (review) => <UserReview key={review.id} review={review} />
             )
         }
     </ul>
