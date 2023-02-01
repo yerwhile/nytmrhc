@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import "./NYTReview.css"
 
@@ -8,12 +8,23 @@ export const NYTReview = ({review}) => {
     const localHaterUser = localStorage.getItem("hater_user")
     const haterUserObject = JSON.parse(localHaterUser)
 
-
     const postReviewButton = () => {
+
+        const properCapitalize = (str) => {
+            const reviewerNameLower = str.toLowerCase();
+            const reviewerNameArr = reviewerNameLower.split(" ")
+
+            const reviewerNameProper = reviewerNameArr.map((word) => {
+                return word[0].toUpperCase() + word.substring(1)
+            }).join(" ")
+
+            return reviewerNameProper
+        }
+        
         
         const sendToReviews = {
             nytTitle: review.display_title,
-            nytReviewer: review.byline,
+            nytReviewer: properCapitalize(review.byline),
             nytDate: review.opening_date,
             nytRating: review.mpaa_rating,
             nytReviewURL: review.link.url,
