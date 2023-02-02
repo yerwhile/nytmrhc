@@ -10,7 +10,7 @@ export const NYTReviews = ({searchResults}) => {
 
     <ul className="reviews">
         {
-            searchResults.map(
+            searchResults?.map(
                 (review) => <NYTReview key={review.date_updated} review={review} />
             )
         }

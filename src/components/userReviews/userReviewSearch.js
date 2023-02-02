@@ -10,6 +10,9 @@ export const UserReviewSearch = () => {
     const [reviews, setReviews] = useState([])
     const [criticChoice, setCriticChoice] = useState("")
     const [uniqueCritics, setUniqueCritics] = useState([])
+    const [honoredReviews, setHonoredReviews] = useState([])
+
+    
 
 
     useEffect(() => {
