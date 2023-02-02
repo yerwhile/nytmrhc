@@ -38,7 +38,7 @@ export const NYTReviewsSearch = () => {
                 </button>
             </div>
         </div>
-        <NYTReviews searchTerms={searchTerms} searchResults={searchResults} />
+        <NYTReviews searchResults={searchResults} />
         </>
     )
 }
