@@ -1,15 +1,13 @@
 import { UserReview } from "./UserReview"
 
-export const UserReviews = ({searchResults}) => {
+export const UserReviews = ({honoredReviews, getAllReviews, searchResults}) => {
     
     return <>
-    
-    <h2>List of Found Reviews</h2>
 
     <ul className="reviews">
         {
             searchResults.map(
-                (review) => <UserReview key={review.id} review={review} />
+                (review) => <UserReview key={review.id} review={review} getAllReviews={getAllReviews} honoredReviews={honoredReviews} />
             )
         }
     </ul>

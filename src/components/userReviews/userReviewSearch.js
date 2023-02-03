@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { UserReviewDropdown } from "./UserReviewDropdown"
 import { UserReviews } from "./UserReviews"
+import "../styles/UserReviews.css"
 
 export const UserReviewSearch = () => {
     
@@ -13,15 +14,29 @@ export const UserReviewSearch = () => {
     const [honoredReviews, setHonoredReviews] = useState([])
 
     
-
-
-    useEffect(() => {
-        fetch(`http://localhost:8088/reviews`)
+    const getAllReviews = () => {
+        return fetch(`http://localhost:8088/reviews`)
             .then(res => res.json())
             .then((reviewsArr) => {
                 setReviews(reviewsArr)
             })
+    }
+
+    const getAllHonoredReviews = () => {
+        return fetch(`http://localhost:8088/honoredReviews`)
+        .then(res => res.json())
+        .then((honoredArr) => {
+            setHonoredReviews(honoredArr)
+        })
+    }
+
+    useEffect(() => {
+        getAllReviews()
     }, [])
+
+    useEffect(() => {
+        getAllHonoredReviews()
+    }, [reviews])
 
     useEffect(() => {
         const allCritics = reviews.map((review) => {
@@ -53,33 +68,37 @@ export const UserReviewSearch = () => {
     }
 
     return (
-        <>
-        <div>
-            <div>
-                <label htmlFor="userReviewsSearchBox">Search User Reviews</label><br></br>
-                <input 
-                    onChange={
-                        (changeEvent) => {
-                            setSearchTerms(changeEvent.target.value)
+        <div className="userReviews">
+            <div className="userReviews-left">
+                <h2>Search Through User Reviews</h2>
+                <div>
+                    <label htmlFor="userReviewsSearchBox">Search by any term:</label><br></br>
+                    <input 
+                        onChange={
+                            (changeEvent) => {
+                                setSearchTerms(changeEvent.target.value)
+                            }
                         }
-                    }
-                    type="text" placeholder="Search All Reviews" id="userReviewsSearchBox" />
+                        type="text" placeholder="Search All Reviews" id="userReviewsSearchBox" />
+                </div>
+                <div>
+                    <button
+                        onClick={(clickEvent) => handleSearchButtonClick(clickEvent)}
+                        id="userReviewsSearchButton">
+                        Search
+                    </button>
+                </div>
+                <UserReviewDropdown setSearchResults={setSearchResults}
+                    searchTerms={searchTerms} 
+                    setSearchTerms={setSearchTerms}
+                    uniqueCritics={uniqueCritics} 
+                    criticChoice={criticChoice} 
+                    setCriticChoice={setCriticChoice}/>
             </div>
-            <div>
-                <button
-                    onClick={(clickEvent) => handleSearchButtonClick(clickEvent)}
-                    className="btn btn-primary">
-                    Search
-                </button>
+            <div className="userReviews-right">
+                <h2>List of Found Reviews</h2>
+                <UserReviews honoredReviews={honoredReviews} getAllReviews={getAllReviews} searchResults={searchResults} />
             </div>
         </div>
-        <UserReviewDropdown setSearchResults={setSearchResults}
-            searchTerms={searchTerms} 
-            setSearchTerms={setSearchTerms}
-            uniqueCritics={uniqueCritics} 
-            criticChoice={criticChoice} 
-            setCriticChoice={setCriticChoice}/>
-        <UserReviews searchResults={searchResults} />
-        </>
     )
 }

@@ -1,0 +1,13 @@
+.review {
+    border: 2px dotted black;
+    padding: 10px;
+    margin: 10px;
+}
+
+.review-buttons {
+    margin-top: 8px;
+}
+
+.honoredButton {
+    background-color:goldenrod
+}

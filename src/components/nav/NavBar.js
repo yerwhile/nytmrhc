@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import "./NavBar.css"
 
@@ -22,6 +23,7 @@ export const NavBar = () => {
                 <Link className="navbar__link" to={`profile/${haterUserObject.id}`}>Profile</Link>
             </li>
             <li className="navbar__item navbar__logout">
+                {/* Signed in as {currentUserName} <br></br> */}
                 <Link className="navbar__link" to="" onClick={() => {
                     localStorage.removeItem("hater_user")
                     navigate("/", {replace: true})

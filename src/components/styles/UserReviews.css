@@ -1,0 +1,38 @@
+.userReviews {
+    display: flex;
+    justify-content: space-around
+}
+
+.userReviews-left {
+    border: solid 3px black;
+    border-radius: 5%;
+    padding: 20px;
+    margin: 10px;
+    width: 40%;
+}
+
+.userReviews-right {
+    border: solid 3px black;
+    border-radius: 5%;
+    padding: 20px;
+    margin: 10px;
+    width: 60%;
+}
+
+.userReviews-dropdown {
+    margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+}
+
+.select-box {
+    width: 15rem;
+}
+
+#userReviewsSearchButton {
+    margin-top: 8px;
+}
+
+#userReviewsSearchBox {
+    width: 15rem;
+}
