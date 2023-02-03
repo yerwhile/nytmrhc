@@ -70,7 +70,7 @@ export const UserReviewSearch = () => {
     return (
         <div className="userReviews">
             <div className="userReviews-left">
-                <h2>Search Through User Reviews</h2>
+                <h2>Search User Reviews</h2>
                 <div>
                     <label htmlFor="userReviewsSearchBox">Search by any term:</label><br></br>
                     <input 

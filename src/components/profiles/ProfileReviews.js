@@ -75,7 +75,7 @@ export const ProfileReviews = ({getAllHonoredReviews, getAllReviews, honoredRevi
     }
 
     return <div className="profileReviews">
-                <h3>{`${userReviews[0]?.user?.fullName}'s Reviews`}</h3>
+                <h3>Reviews</h3>
                 {
                     userReviews.map((userReview) => {
                         return <div className="review" key={userReview.id}>

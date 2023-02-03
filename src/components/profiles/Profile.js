@@ -65,7 +65,7 @@ export const Profile = () => {
                 <ProfileUser user={user} />
             </div>
             <div className="profile-box">
-                <h3>{`${userReviews[0]?.user?.fullName}'s Honored Reviews`}</h3>
+                <h3>Honored Reviews</h3>
                 <ProfileHonored 
                     honoredReviews={honoredReviews} 
                     userReviews={userReviews} 

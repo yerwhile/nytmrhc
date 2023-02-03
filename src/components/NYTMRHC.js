@@ -12,20 +12,6 @@ export const NYTMRHC = () => {
 	const localHaterUser = localStorage.getItem("hater_user")
     const haterUserObject = JSON.parse(localHaterUser)
 
-	// const [currentUserName, setCurrentUserName] = useState("")
-
-	// const getCurrentUserName = () => {
-	// 	fetch(`http://localhost:8088/users/${haterUserObject.id}`)
-	// 	.then(res => res.json())
-	// 	.then((userObj) => {
-	// 		setCurrentUserName(userObj.fullName)
-	// 	})
-	// }
-
-	// useEffect(() => {
-	// 	getCurrentUserName()
-	// }, [haterUserObject])
-
 	return <Routes>
 		<Route path="/login" element={<Login />} />
 		<Route path="/register" element={<Register />} />
