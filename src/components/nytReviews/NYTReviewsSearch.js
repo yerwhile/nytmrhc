@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { NYTReviews } from "./NYTReviews"
 import Settings from "../../Settings"
+import "../styles/NYTReviews.css"
 
 export const NYTReviewsSearch = () => {
 
@@ -18,27 +19,32 @@ export const NYTReviewsSearch = () => {
     }
 
     return (
-        <>
-        <div>
-            <div>
-                <label htmlFor="nytReviewsSearchBox">Search NYT Reviews</label><br></br>
-                <input 
-                    onChange={
-                        (changeEvent) => {
-                            setSearchTerms(changeEvent.target.value)
+        <div className="nytReviews">
+            <div className="nytReviews-left">
+                <h2>Search NYT Critic Reviews</h2>
+                <div>
+                    <label htmlFor="nytReviewsSearchBox">Search by any term:</label><br></br>
+                    <input 
+                        onChange={
+                            (changeEvent) => {
+                                setSearchTerms(changeEvent.target.value)
+                            }
                         }
-                    }
-                    type="text" placeholder="Search All Reviews" id="nytReviewsSearchBox" />
+                        type="text" placeholder="Search All Reviews" id="nytReviewsSearchBox" />
+                </div>
+                <div>
+                    <button
+                        onClick={(clickEvent) => handleSearchButtonClick(clickEvent)}
+                        className="buttonUserReviewsSearch">
+                        Search
+                    </button>
+                </div>
             </div>
-            <div>
-                <button
-                    onClick={(clickEvent) => handleSearchButtonClick(clickEvent)}
-                    className="btn btn-primary">
-                    Search
-                </button>
+            <div className="nytReviews-right">
+                <h2>List of Found Reviews</h2>
+                <NYTReviews searchResults={searchResults} />
             </div>
+            
         </div>
-        <NYTReviews searchResults={searchResults} />
-        </>
     )
 }

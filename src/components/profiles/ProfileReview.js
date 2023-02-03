@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
+import "../styles/Reviews.css"
 
 export const ProfileReview = () => {
     const { reviewId } = useParams({})
@@ -8,7 +9,7 @@ export const ProfileReview = () => {
   
  
     useEffect(() => {
-        fetch(`http://localhost:8088/reviews?id=${reviewId}`)
+        fetch(`http://localhost:8088/reviews?id=${reviewId}&_expand=user`)
             .then(res => res.json())
             .then((reviewArr) => {
                 const singleReview = reviewArr[0]
@@ -19,9 +20,10 @@ export const ProfileReview = () => {
     
 
     return <section className='reviewFull' >
-            <header className='reviewFull__header'>{review?.nytTitle}</header>
-            <img src={review?.userImage} height="200"/>
+            <header className='reviewFull__header'>{review?.user?.fullName}'s review of:</header>
             <div>NYT Critic: {review?.nytReviewer}</div>
+            <div>Film Title: {review?.nytTitle}</div>
+            <img src={review?.userImage} height="200"/>
             <div>Your Review: {review?.userReview}</div>
         </section>
 

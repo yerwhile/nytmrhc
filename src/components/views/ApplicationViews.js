@@ -12,8 +12,8 @@ export const ApplicationViews = () => {
         <Routes>
             <Route path="/" element={
                 <>
-                    <h1>NYT Movie Review Haters</h1>
-                    <h3>Where grudges are screened daily.</h3>
+                    <h2>NYT Movie Review Haters</h2>
+                    <h4>Where grudges are screened daily.</h4>
 
                     <Outlet />
                 </>

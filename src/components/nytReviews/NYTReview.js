@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import "./NYTReview.css"
+import "../styles/Reviews.css"
 
 export const NYTReview = ({review}) => {
     
@@ -8,18 +8,19 @@ export const NYTReview = ({review}) => {
     const localHaterUser = localStorage.getItem("hater_user")
     const haterUserObject = JSON.parse(localHaterUser)
 
+    const properCapitalize = (str) => {
+        const reviewerNameLower = str.toLowerCase();
+        const reviewerNameArr = reviewerNameLower.split(" ")
+
+        const reviewerNameProper = reviewerNameArr.map((word) => {
+            return word[0].toUpperCase() + word.substring(1)
+        }).join(" ")
+
+        return reviewerNameProper
+    }
+
     const postReviewButton = () => {
-
-        const properCapitalize = (str) => {
-            const reviewerNameLower = str.toLowerCase();
-            const reviewerNameArr = reviewerNameLower.split(" ")
-
-            const reviewerNameProper = reviewerNameArr.map((word) => {
-                return word[0].toUpperCase() + word.substring(1)
-            }).join(" ")
-
-            return reviewerNameProper
-        }
+        
         
         
         const sendToReviews = {
@@ -57,13 +58,16 @@ export const NYTReview = ({review}) => {
 
     }
 
-    return <li className="review">
-                        <header>{review.display_title}</header>
+    return <section className="review">
+                        <header>Film Title: {review.display_title}</header>
                         <p>Rated: {review.mpaa_rating}</p>
                         <p>Movie Release Date: {review.opening_date}</p>
-                        <p>Reviewer: {review.byline}</p>
-                        {
-                            postReviewButton()
-                        }
-                    </li>
+                        <p>Reviewer: {properCapitalize(review.byline)}</p>
+                        <div className="review-buttons">
+                            {
+                                postReviewButton()
+                            }
+                        </div>
+                        
+                    </section>
 }

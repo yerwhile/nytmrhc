@@ -6,7 +6,7 @@ export const NYTReviews = ({searchResults}) => {
     
     return <>
     
-    <h2>List of Found Reviews</h2>
+    
 
     <ul className="reviews">
         {

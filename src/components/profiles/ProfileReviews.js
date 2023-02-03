@@ -7,8 +7,6 @@ export const ProfileReviews = ({getAllHonoredReviews, getAllReviews, honoredRevi
     const haterUserObject = JSON.parse(localHaterUser)
     const navigate = useNavigate()
     
-    const[reviews, setReviews] = useState([])
-    
     const findHonoredReview = (currentReviewId) => {
         const foundHonoredReview = honoredReviews.find((honoredReview) => {
             return honoredReview.reviewId === currentReviewId && honoredReview.userId === haterUserObject.id
@@ -38,7 +36,7 @@ export const ProfileReviews = ({getAllHonoredReviews, getAllReviews, honoredRevi
                 })
             }
         }
-        type="submit" className="btn">Honor?</button>
+        type="submit" className="honorButton">Honor?</button>
     
     
     }
@@ -54,7 +52,7 @@ export const ProfileReviews = ({getAllHonoredReviews, getAllReviews, honoredRevi
                         getAllReviews()
                     })
             }
-        } className="honored__delete">Honored!</button>
+        } className="honoredButton">Honored!</button>
     }
 
     
@@ -68,28 +66,35 @@ export const ProfileReviews = ({getAllHonoredReviews, getAllReviews, honoredRevi
                     getAllReviews()
                 })
         }} className="review__delete">Delete</button>
-}
-    
+    }
+
+    const makeHonorsAvailable = (userReviewId) => {
+        return undefined === honoredReviews.find(honoredReview => honoredReview.reviewId === userReviewId)
+                    ? handleHonorButton(userReviewId)
+                    : handleHonoredButton(userReviewId)
+    }
+
     return <div className="profileReviews">
                 <h3>{`${userReviews[0]?.user?.fullName}'s Reviews`}</h3>
                 {
                     userReviews.map((userReview) => {
-                        return <div className="userReview" key={userReview.id}>
+                        return <div className="review" key={userReview.id}>
                                     <p>NYT Critic: {userReview.nytReviewer}</p>
                                     <p>Film Title: {userReview.nytTitle}</p>
                                     <Link to={`./${userReview.id}`}>See Full Review</Link>
-                                    {
-                                        haterUserObject.id === userReview.userId
-                                            ? deleteButton(userReview.id)
-                                            : ""
-                                        
-                                    }
-                                    {
-                                        undefined === honoredReviews.find(honoredReview => honoredReview.reviewId === userReview.id)
-                                            ? handleHonorButton(userReview.id)
-                                            : handleHonoredButton(userReview.id)
-                                    }
-                                    <hr></hr>
+                                    <div className="review-buttons">
+                                        {
+                                            haterUserObject.id === userReview.userId
+                                                ? deleteButton(userReview.id)
+                                                : ""
+                                            
+                                        }
+                                        {
+                                            userReview.userId === haterUserObject.id
+                                                ? makeHonorsAvailable(userReview.id)
+                                                : ""
+                                        }
+                                    </div>
                                 </div>
                     })
                 } 

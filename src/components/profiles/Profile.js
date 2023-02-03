@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import { ProfileHonored } from "./ProfileHonored"
 import { ProfileReviews } from "./ProfileReviews"
 import { ProfileUser } from "./ProfileUser"
+import "../styles/Profile.css"
 
 export const Profile = () => {
 
@@ -12,6 +13,7 @@ export const Profile = () => {
     const [user, setUser] = useState({})
     const [userReviews, setUserReviews] = useState([])
     const [honoredReviews, setHonoredReviews] = useState([])
+    
 
     const getAllReviews = () => {
         return fetch(`http://localhost:8088/reviews`)
@@ -29,6 +31,8 @@ export const Profile = () => {
         })
     }
 
+    
+
     useEffect(() => {
         getAllReviews()
     }, [])
@@ -36,6 +40,7 @@ export const Profile = () => {
     useEffect(() => {
         getAllHonoredReviews()
     }, [reviews])
+    
 
     useEffect(() => {
         fetch(`http://localhost:8088/users?id=${userId}`)
@@ -55,9 +60,28 @@ export const Profile = () => {
 
     return (
     <div className="profile">
-       <ProfileUser user={user} />
-       <ProfileReviews getAllHonoredReviews={getAllHonoredReviews} getAllReviews={getAllReviews} honoredReviews ={honoredReviews} userReviews={userReviews} />
-       <ProfileHonored />
+        <div className="profile-left">
+            <div className="profile-box">
+                <ProfileUser user={user} />
+            </div>
+            <div className="profile-box">
+                <h3>{`${userReviews[0]?.user?.fullName}'s Honored Reviews`}</h3>
+                <ProfileHonored 
+                    honoredReviews={honoredReviews} 
+                    userReviews={userReviews} 
+                    getAllReviews={getAllReviews}/>
+            </div>
+            
+        </div>
+        <div className="profile-right">
+            <div className="profile-box">
+                <ProfileReviews 
+                    getAllHonoredReviews={getAllHonoredReviews} 
+                    getAllReviews={getAllReviews} 
+                    honoredReviews ={honoredReviews} 
+                    userReviews={userReviews} />
+            </div>
+        </div>
     </div>    
     )
 }
