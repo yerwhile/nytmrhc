@@ -96,7 +96,7 @@ export const UserReviewSearch = () => {
                     setCriticChoice={setCriticChoice}/>
             </div>
             <div className="userReviews-right">
-                <h2>List of Found Reviews</h2>
+                <h2>List of Found User Reviews</h2>
                 <UserReviews honoredReviews={honoredReviews} getAllReviews={getAllReviews} searchResults={searchResults} />
             </div>
         </div>
