@@ -5,7 +5,6 @@ import { NavBar } from "./nav/NavBar"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 import "./styles/NYTMRHC.css"
-import { useEffect, useState } from "react"
 
 
 export const NYTMRHC = () => {

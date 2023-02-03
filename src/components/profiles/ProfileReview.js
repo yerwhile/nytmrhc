@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import "../styles/Reviews.css"
 
 export const ProfileReview = () => {
@@ -20,11 +20,11 @@ export const ProfileReview = () => {
     
 
     return <section className='reviewFull' >
-            <header className='reviewFull__header'>{review?.user?.fullName}'s review of:</header>
+            <header className='reviewFull__header'><Link to={`../profile/${review.userId}`}>{review?.user?.fullName}</Link>'s review of:</header>
             <div>NYT Critic: {review?.nytReviewer}</div>
             <div>Film Title: {review?.nytTitle}</div>
             <img src={review?.userImage} height="200"/>
-            <div>Your Review: {review?.userReview}</div>
+            <div>Review: {review?.userReview}</div>
         </section>
 
 }

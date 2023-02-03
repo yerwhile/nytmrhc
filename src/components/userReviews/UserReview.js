@@ -78,7 +78,7 @@ export const UserReview = ({honoredReviews, getAllReviews, review}) => {
                 <p>Movie Release Date: {review.nytDate}</p>
                 <p>NYT Critic: {review.nytReviewer}</p>
                 <p>NYTMRHC Reviewer: <Link to={`../profile/${review.userId}`}>{review.user.fullName}</Link></p>
-                <Link to={`../profile/${review.id}`}>See Full Review</Link>
+                <Link to={`../profile/${review.userId}/${review.id}`}>See Full Review</Link>
                 <div className="review-buttons">
                     {
                         haterUserObject.id === review.userId

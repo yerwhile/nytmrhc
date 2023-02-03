@@ -41,7 +41,7 @@ export const NYTReviewsSearch = () => {
                 </div>
             </div>
             <div className="nytReviews-right">
-                <h2>List of Found Reviews</h2>
+                <h2>List of Found NYT Reviews</h2>
                 <NYTReviews searchResults={searchResults} />
             </div>
             
