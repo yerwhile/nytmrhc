@@ -13,6 +13,7 @@ export const Profile = () => {
     const [user, setUser] = useState({})
     const [userReviews, setUserReviews] = useState([])
     const [honoredReviews, setHonoredReviews] = useState([])
+    const [rageObjects, setRageObjects] = useState([])
     
 
     const getAllReviews = () => {
@@ -31,6 +32,13 @@ export const Profile = () => {
         })
     }
 
+    const getAllRageObjects = () => {
+        return fetch(`http://localhost:8088/rageObjects`)
+        .then(res => res.json())
+        .then((rageObjectArr) => {
+            setRageObjects(rageObjectArr)
+        })
+    }
     
 
     useEffect(() => {
@@ -41,6 +49,9 @@ export const Profile = () => {
         getAllHonoredReviews()
     }, [reviews])
     
+    useEffect(() => {
+        getAllRageObjects()
+    }, [reviews])
 
     useEffect(() => {
         fetch(`http://localhost:8088/users?id=${userId}`)
@@ -76,10 +87,11 @@ export const Profile = () => {
         <div className="profile-right">
             <div className="profile-box">
                 <ProfileReviews 
-                    getAllHonoredReviews={getAllHonoredReviews} 
                     getAllReviews={getAllReviews} 
                     honoredReviews ={honoredReviews} 
-                    userReviews={userReviews} />
+                    userReviews={userReviews}
+                    rageObjects={rageObjects} />
+                    
             </div>
         </div>
     </div>    

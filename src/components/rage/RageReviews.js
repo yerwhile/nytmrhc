@@ -1,13 +1,10 @@
-import { useState } from "react"
 import { Link } from "react-router-dom"
-import "../styles/Reviews.css"
 
-export const UserReview = ({rageObjects, honoredReviews, getAllReviews, review}) => {
-
+export const RageReviews = ({rageObjects, honoredReviews, rageReviews, getAllRageReviews}) => {
     const localHaterUser = localStorage.getItem("hater_user")
     const haterUserObject = JSON.parse(localHaterUser)
     
-
+    
     const findHonoredReview = (currentReviewId) => {
         const foundHonoredReview = honoredReviews.find((honoredReview) => {
             return honoredReview.reviewId === currentReviewId && honoredReview.userId === haterUserObject.id
@@ -46,7 +43,7 @@ export const UserReview = ({rageObjects, honoredReviews, getAllReviews, review})
                         })
                         .then(res => res.json())
                         .then(() => {
-                            getAllReviews()
+                            getAllRageReviews()
                         })
                         
                     })
@@ -79,7 +76,7 @@ export const UserReview = ({rageObjects, honoredReviews, getAllReviews, review})
                             method: "DELETE",
                         })
                         .then(() => {
-                            getAllReviews()
+                            getAllRageReviews()
                         })
                     })
             }
@@ -105,7 +102,7 @@ export const UserReview = ({rageObjects, honoredReviews, getAllReviews, review})
             })
                 .then(res => res.json())
                 .then(() => {
-                    getAllReviews()
+                    getAllRageReviews()
                 })
             }
         }
@@ -122,11 +119,13 @@ export const UserReview = ({rageObjects, honoredReviews, getAllReviews, review})
                     method: "DELETE"
                 })
                     .then(() => {
-                        getAllReviews()
+                        getAllRageReviews()
                     })
             }
         } className="honoredButton">Honored!</button>
     }
+
+    
     
     const deleteButton = (reviewId) => {
         return <button onClick={() => {
@@ -134,14 +133,15 @@ export const UserReview = ({rageObjects, honoredReviews, getAllReviews, review})
                 method: "DELETE"
             })
                 .then(() => {
-                    getAllReviews()
+                    getAllRageReviews()
                 })
         }} className="review__delete">Delete</button>
-}
-    const makeHonorsAvailable = () => {
-        return undefined === honoredReviews.find(honoredReview => honoredReview.reviewId === review.id && honoredReview.userId === haterUserObject.id)
-                            ? handleHonorButton(review.id)
-                            : handleHonoredButton(review.id)
+    }
+
+    const makeHonorsAvailable = (userReviewId) => {
+        return undefined === honoredReviews.find(honoredReview => honoredReview.reviewId === userReviewId)
+                    ? handleHonorButton(userReviewId)
+                    : handleHonoredButton(userReviewId)
     }
 
     const makeRageAvailable = (userReview, currentRage) => {
@@ -153,30 +153,35 @@ export const UserReview = ({rageObjects, honoredReviews, getAllReviews, review})
             : handleEnragedButton(userReview.id, currentRage)
     }
 
-    return <section className="review">
-                <header>Movie Title: {review.nytTitle}</header>
-                <p>Movie Release Date: {review.nytDate}</p>
-                <p>NYT Critic: {review.nytReviewer}</p>
-                <p>NYTMRHC Reviewer: <Link to={`../profile/${review.userId}`}>{review.user.fullName}</Link></p>
-                <p>Rage Count: {review.rage}</p>
-                <Link to={`../profile/${review.userId}/${review.id}`}>See Full Review</Link>
-                <div className="review-buttons">
-                    {
-                        haterUserObject.id === review.userId
-                            ? deleteButton(review.id)
-                            : ""
-                        
-                    }
-                    {
-                        review.userId === haterUserObject.id
-                            ? makeHonorsAvailable()
-                            : ""
-                    }
-                    {
-                        review.userId !== haterUserObject.id
-                            ? makeRageAvailable(review, review.rage)
-                            : ""
-                    }
-                </div>
-            </section>
+    return <ol>
+                {
+                    rageReviews.map((rageReview) => {
+                        return <li className="review" key={rageReview.id}>
+                                    <p>NYTMRHC User: {rageReview.user.fullName}</p>
+                                    <p>NYT Critic: {rageReview.nytReviewer}</p>
+                                    <p>Film Title: {rageReview.nytTitle}</p>
+                                    <p>Rage Count: {rageReview.rage}</p>
+                                    <Link to={`./${rageReview.id}`}>See Full Review</Link>
+                                    <div className="review-buttons">
+                                        {
+                                            haterUserObject.id === rageReview.userId
+                                                ? deleteButton(rageReview.id)
+                                                : ""
+                                            
+                                        }
+                                        {
+                                            rageReview.userId === haterUserObject.id
+                                                ? makeHonorsAvailable(rageReview.id)
+                                                : ""
+                                        }
+                                        {
+                                            rageReview.userId !== haterUserObject.id
+                                                ? makeRageAvailable(rageReview, rageReview.rage)
+                                                : ""
+                                        }
+                                    </div>
+                                </li>
+                    })
+                } 
+            </ol>
 }

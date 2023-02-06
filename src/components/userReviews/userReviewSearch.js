@@ -12,6 +12,7 @@ export const UserReviewSearch = () => {
     const [criticChoice, setCriticChoice] = useState("")
     const [uniqueCritics, setUniqueCritics] = useState([])
     const [honoredReviews, setHonoredReviews] = useState([])
+    const [rageObjects, setRageObjects] = useState([])
 
     
     const getAllReviews = () => {
@@ -30,12 +31,24 @@ export const UserReviewSearch = () => {
         })
     }
 
+    const getAllRageObjects = () => {
+        return fetch(`http://localhost:8088/rageObjects`)
+        .then(res => res.json())
+        .then((rageObjectArr) => {
+            setRageObjects(rageObjectArr)
+        })
+    }
+
     useEffect(() => {
         getAllReviews()
     }, [])
 
     useEffect(() => {
         getAllHonoredReviews()
+    }, [reviews])
+
+    useEffect(() => {
+        getAllRageObjects()
     }, [reviews])
 
     useEffect(() => {
@@ -97,7 +110,10 @@ export const UserReviewSearch = () => {
             </div>
             <div className="userReviews-right">
                 <h2>List of Found User Reviews</h2>
-                <UserReviews honoredReviews={honoredReviews} getAllReviews={getAllReviews} searchResults={searchResults} />
+                <UserReviews honoredReviews={honoredReviews} 
+                    getAllReviews={getAllReviews} 
+                    searchResults={searchResults}
+                    rageObjects={rageObjects} />
             </div>
         </div>
     )

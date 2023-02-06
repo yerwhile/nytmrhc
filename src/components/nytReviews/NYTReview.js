@@ -29,6 +29,7 @@ export const NYTReview = ({review}) => {
             nytDate: review.opening_date,
             nytRating: review.mpaa_rating,
             nytReviewURL: review.link.url,
+            rage: 0,
             userId: haterUserObject.id,
             userImage: "",
             userReview: ""

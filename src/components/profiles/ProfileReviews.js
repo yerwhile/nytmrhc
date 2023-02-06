@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Link, Navigate, useNavigate } from "react-router-dom"
 
-export const ProfileReviews = ({getAllHonoredReviews, getAllReviews, honoredReviews, userReviews}) => {
+export const ProfileReviews = ({rageObjects, getAllReviews, honoredReviews, userReviews}) => {
 
     const localHaterUser = localStorage.getItem("hater_user")
     const haterUserObject = JSON.parse(localHaterUser)
@@ -12,6 +12,78 @@ export const ProfileReviews = ({getAllHonoredReviews, getAllReviews, honoredRevi
             return honoredReview.reviewId === currentReviewId && honoredReview.userId === haterUserObject.id
         })
         return foundHonoredReview
+    }
+
+    const handleRageButton = (reviewId, currentRage) => {
+        const updateRage = {
+            rage: currentRage + 1,
+            enraged: true
+        }
+
+        const createRageObject = {
+            userId: haterUserObject.id,
+            reviewId: reviewId
+        }
+        
+        return <button onClick={
+            () => {
+            return fetch(`http://localhost:8088/reviews/${reviewId}`, {
+                        method: "PATCH",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(updateRage)
+                    })
+                    .then(res => res.json())
+                    .then(() => {
+                        return fetch (`http://localhost:8088/rageObjects`, {
+                            method: "POST",
+                            headers: {
+                            "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(createRageObject)
+                        })
+                        .then(res => res.json())
+                        .then(() => {
+                            getAllReviews()
+                        })
+                        
+                    })
+            }
+        }
+        type="submit" className="rageButton">Rage?</button>
+    }
+
+    const handleEnragedButton = (reviewId, currentRage) => {
+        const updateRage = {
+            rage: currentRage - 1,
+            enraged: false
+        }
+        
+        return <button onClick={
+            () => {
+            return fetch(`http://localhost:8088/reviews/${reviewId}`, {
+                        method: "PATCH",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(updateRage)
+                    })
+                    .then(res => res.json())
+                    .then(() => {
+                        const foundRageObject = rageObjects.find((rageObject) => {
+                            return rageObject.reviewId === reviewId && rageObject.userId === haterUserObject.id
+                        })
+                        return fetch (`http://localhost:8088/rageObjects/${foundRageObject.id}`, {
+                            method: "DELETE",
+                        })
+                        .then(() => {
+                            getAllReviews()
+                        })
+                    })
+            }
+        }
+        type="submit" className="enragedButton">Enraged!</button>
     }
 
     const handleHonorButton = (currentReviewId) => {
@@ -74,6 +146,15 @@ export const ProfileReviews = ({getAllHonoredReviews, getAllReviews, honoredRevi
                     : handleHonoredButton(userReviewId)
     }
 
+    const makeRageAvailable = (userReview, currentRage) => {
+        const foundRageObject = rageObjects.find((rageObject) => {
+            return rageObject.reviewId === userReview.id && rageObject.userId === haterUserObject.id
+        })
+        return undefined === foundRageObject
+            ? handleRageButton(userReview.id, currentRage)
+            : handleEnragedButton(userReview.id, currentRage)
+    }
+
     return <div className="profileReviews">
                 <h3>Reviews</h3>
                 {
@@ -81,6 +162,7 @@ export const ProfileReviews = ({getAllHonoredReviews, getAllReviews, honoredRevi
                         return <div className="review" key={userReview.id}>
                                     <p>NYT Critic: {userReview.nytReviewer}</p>
                                     <p>Film Title: {userReview.nytTitle}</p>
+                                    <p>Rage Count: {userReview.rage}</p>
                                     <Link to={`./${userReview.id}`}>See Full Review</Link>
                                     <div className="review-buttons">
                                         {
@@ -92,6 +174,11 @@ export const ProfileReviews = ({getAllHonoredReviews, getAllReviews, honoredRevi
                                         {
                                             userReview.userId === haterUserObject.id
                                                 ? makeHonorsAvailable(userReview.id)
+                                                : ""
+                                        }
+                                        {
+                                            userReview.userId !== haterUserObject.id
+                                                ? makeRageAvailable(userReview, userReview.rage)
                                                 : ""
                                         }
                                     </div>

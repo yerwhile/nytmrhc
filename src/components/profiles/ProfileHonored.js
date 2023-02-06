@@ -25,6 +25,54 @@ export const ProfileHonored = ({getAllReviews, honoredReviews, userReviews}) => 
     }
     
 
+    const handleRageButton = (reviewId, currentRage) => {
+        const updateRage = {
+            rage: currentRage + 1,
+            enraged: true
+        }
+        
+        return <button onClick={
+            () => {
+            return fetch(`http://localhost:8088/reviews/${reviewId}`, {
+                        method: "PATCH",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(updateRage)
+                    })
+                    .then(res => res.json())
+                    .then(() => {
+                        getAllReviews()
+                    })
+            }
+        }
+        type="submit" className="rageButton">Rage?</button>
+    }
+
+    const handleEnragedButton = (reviewId, currentRage) => {
+        const updateRage = {
+            rage: currentRage - 1,
+            enraged: false
+        }
+        
+        return <button onClick={
+            () => {
+            return fetch(`http://localhost:8088/reviews/${reviewId}`, {
+                        method: "PATCH",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(updateRage)
+                    })
+                    .then(res => res.json())
+                    .then(() => {
+                        getAllReviews()
+                    })
+            }
+        }
+        type="submit" className="enragedButton">Enraged!</button>
+    }
+
     const handleHonorButton = (currentReviewId) => {
     
         const sendToHonoredReviews = {
@@ -83,6 +131,12 @@ export const ProfileHonored = ({getAllReviews, honoredReviews, userReviews}) => 
         return handleHonoredButton(honoredReviewId)
     }
 
+    const makeRageAvailable = (userReview, currentRage) => {
+        return userReview.enraged === false 
+            ? handleRageButton(userReview.id, currentRage)
+            : handleEnragedButton(userReview.id, currentRage)
+    }
+
     return <>
                 
                 {
@@ -90,6 +144,7 @@ export const ProfileHonored = ({getAllReviews, honoredReviews, userReviews}) => 
                         return <div className="review" key={honoredReview.id}>
                                     <p>NYT Critic: {honoredReview.nytReviewer}</p>
                                     <p>Film Title: {honoredReview.nytTitle}</p>
+                                    <p>Rage Count: {honoredReview.rage}</p>
                                     <Link to={`./${honoredReview.id}`}>See Full Review</Link>
                                     <div className="review-buttons">
                                         {
@@ -101,6 +156,11 @@ export const ProfileHonored = ({getAllReviews, honoredReviews, userReviews}) => 
                                         {
                                             honoredReview.userId === haterUserObject.id
                                                 ? makeHonorsAvailable(honoredReview.id)
+                                                : ""
+                                        }
+                                        {
+                                            honoredReview.userId !== haterUserObject.id
+                                                ? makeRageAvailable(honoredReview, honoredReview.rage)
                                                 : ""
                                         }
                                     </div>
