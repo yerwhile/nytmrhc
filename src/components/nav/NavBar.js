@@ -16,9 +16,9 @@ export const NavBar = () => {
             <li className="navbar__item navbar__test">
                 <Link className="navbar__link" to="userReviews">Search User Reviews</Link>
             </li>
-            {/* <li className="navbar__item navbar__test">
-                <Link className="navbar__link" to="" invisible>Rage Ranking</Link>
-            </li> */}
+            <li className="navbar__item navbar__test">
+                <Link className="navbar__link" to="rage">Rage Ranking</Link>
+            </li>
             <li className="navbar__item navbar__test">
                 <Link className="navbar__link" to={`profile/${haterUserObject.id}`}>Profile</Link>
             </li>

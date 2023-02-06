@@ -54,7 +54,7 @@ export const UserReviewSearch = () => {
                 setSearchResults(searchArr)
             })
         
-    }, [criticChoice])
+    }, [criticChoice, reviews])
     
 
     const handleSearchButtonClick = (e) => {

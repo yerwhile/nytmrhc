@@ -7,7 +7,6 @@ export const UserReview = ({honoredReviews, getAllReviews, review}) => {
     const localHaterUser = localStorage.getItem("hater_user")
     const haterUserObject = JSON.parse(localHaterUser)
     
-    const[reviews, setReviews] = useState([])
 
     const findHonoredReview = (currentReviewId) => {
         const foundHonoredReview = honoredReviews.find((honoredReview) => {
