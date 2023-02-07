@@ -7,6 +7,7 @@
     width: 100%;
     background-color: dodgerblue;
     border: 2px solid;
+    z-index: 1;
 }
 
 .navbar__item {

@@ -80,7 +80,9 @@ export const Profile = () => {
                 <ProfileHonored 
                     honoredReviews={honoredReviews} 
                     userReviews={userReviews} 
-                    getAllReviews={getAllReviews}/>
+                    getAllReviews={getAllReviews}
+                    rageObjects={rageObjects}/>
+                    
             </div>
             
         </div>

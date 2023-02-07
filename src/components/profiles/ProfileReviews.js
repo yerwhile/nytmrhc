@@ -140,6 +140,12 @@ export const ProfileReviews = ({rageObjects, getAllReviews, honoredReviews, user
         }} className="review__delete">Delete</button>
     }
 
+    const editButton = (reviewId) => {
+        return <button onClick={() => {
+            navigate(`../edit/${haterUserObject.id}/${reviewId}`)
+        }} className="review__edit">Edit</button>
+    }
+
     const makeHonorsAvailable = (userReviewId) => {
         return undefined === honoredReviews.find(honoredReview => honoredReview.reviewId === userReviewId)
                     ? handleHonorButton(userReviewId)
@@ -154,6 +160,7 @@ export const ProfileReviews = ({rageObjects, getAllReviews, honoredReviews, user
             ? handleRageButton(userReview.id, currentRage)
             : handleEnragedButton(userReview.id, currentRage)
     }
+
 
     return <div className="profileReviews">
                 <h3>Reviews</h3>
@@ -179,6 +186,11 @@ export const ProfileReviews = ({rageObjects, getAllReviews, honoredReviews, user
                                         {
                                             userReview.userId !== haterUserObject.id
                                                 ? makeRageAvailable(userReview, userReview.rage)
+                                                : ""
+                                        }
+                                        {
+                                            userReview.userId === haterUserObject.id
+                                                ? editButton(userReview.id)
                                                 : ""
                                         }
                                     </div>

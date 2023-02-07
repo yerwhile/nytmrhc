@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
-export const ProfileHonored = ({getAllReviews, honoredReviews, userReviews}) => {
+export const ProfileHonored = ({rageObjects, getAllReviews, honoredReviews, userReviews}) => {
 
     const localHaterUser = localStorage.getItem("hater_user")
     const haterUserObject = JSON.parse(localHaterUser)
+
+    const navigate = useNavigate()
 
     const findHonoredReview = (currentReviewId) => {
         const foundHonoredReview = honoredReviews.find((honoredReview) => {
@@ -30,6 +32,11 @@ export const ProfileHonored = ({getAllReviews, honoredReviews, userReviews}) => 
             rage: currentRage + 1,
             enraged: true
         }
+
+        const createRageObject = {
+            userId: haterUserObject.id,
+            reviewId: reviewId
+        }
         
         return <button onClick={
             () => {
@@ -42,7 +49,18 @@ export const ProfileHonored = ({getAllReviews, honoredReviews, userReviews}) => 
                     })
                     .then(res => res.json())
                     .then(() => {
-                        getAllReviews()
+                        return fetch (`http://localhost:8088/rageObjects`, {
+                            method: "POST",
+                            headers: {
+                            "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(createRageObject)
+                        })
+                        .then(res => res.json())
+                        .then(() => {
+                            getAllReviews()
+                        })
+                        
                     })
             }
         }
@@ -66,7 +84,15 @@ export const ProfileHonored = ({getAllReviews, honoredReviews, userReviews}) => 
                     })
                     .then(res => res.json())
                     .then(() => {
-                        getAllReviews()
+                        const foundRageObject = rageObjects.find((rageObject) => {
+                            return rageObject.reviewId === reviewId && rageObject.userId === haterUserObject.id
+                        })
+                        return fetch (`http://localhost:8088/rageObjects/${foundRageObject.id}`, {
+                            method: "DELETE",
+                        })
+                        .then(() => {
+                            getAllReviews()
+                        })
                     })
             }
         }
@@ -127,12 +153,21 @@ export const ProfileHonored = ({getAllReviews, honoredReviews, userReviews}) => 
         }} className="review__delete">Delete</button>
     }
 
+    const editButton = (reviewId) => {
+        return <button onClick={() => {
+            navigate(`../edit/${haterUserObject.id}/${reviewId}`)
+        }} className="review__edit">Edit</button>
+    }
+
     const makeHonorsAvailable = (honoredReviewId) => {
         return handleHonoredButton(honoredReviewId)
     }
 
     const makeRageAvailable = (userReview, currentRage) => {
-        return userReview.enraged === false 
+        const foundRageObject = rageObjects.find((rageObject) => {
+            return rageObject.reviewId === userReview.id && rageObject.userId === haterUserObject.id
+        })
+        return undefined === foundRageObject
             ? handleRageButton(userReview.id, currentRage)
             : handleEnragedButton(userReview.id, currentRage)
     }
@@ -161,6 +196,11 @@ export const ProfileHonored = ({getAllReviews, honoredReviews, userReviews}) => 
                                         {
                                             honoredReview.userId !== haterUserObject.id
                                                 ? makeRageAvailable(honoredReview, honoredReview.rage)
+                                                : ""
+                                        }
+                                        {
+                                            honoredReview.userId === haterUserObject.id
+                                                ? editButton(honoredReview.id)
                                                 : ""
                                         }
                                     </div>

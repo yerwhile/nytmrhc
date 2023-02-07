@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import "../styles/Reviews.css"
 
 export const UserReview = ({rageObjects, honoredReviews, getAllReviews, review}) => {
@@ -7,6 +7,7 @@ export const UserReview = ({rageObjects, honoredReviews, getAllReviews, review})
     const localHaterUser = localStorage.getItem("hater_user")
     const haterUserObject = JSON.parse(localHaterUser)
     
+    const navigate = useNavigate()
 
     const findHonoredReview = (currentReviewId) => {
         const foundHonoredReview = honoredReviews.find((honoredReview) => {
@@ -137,7 +138,14 @@ export const UserReview = ({rageObjects, honoredReviews, getAllReviews, review})
                     getAllReviews()
                 })
         }} className="review__delete">Delete</button>
-}
+    }
+
+    const editButton = (reviewId) => {
+        return <button onClick={() => {
+            navigate(`../edit/${haterUserObject.id}/${reviewId}`)
+        }} className="review__edit">Edit</button>
+    }
+
     const makeHonorsAvailable = () => {
         return undefined === honoredReviews.find(honoredReview => honoredReview.reviewId === review.id && honoredReview.userId === haterUserObject.id)
                             ? handleHonorButton(review.id)
@@ -175,6 +183,11 @@ export const UserReview = ({rageObjects, honoredReviews, getAllReviews, review})
                     {
                         review.userId !== haterUserObject.id
                             ? makeRageAvailable(review, review.rage)
+                            : ""
+                    }
+                    {
+                        review.userId === haterUserObject.id
+                            ? editButton(review.id)
                             : ""
                     }
                 </div>

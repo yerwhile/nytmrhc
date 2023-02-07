@@ -6,6 +6,7 @@ import { ProfileReview } from "../profiles/ProfileReview"
 import { UserReviewSearch } from "../userReviews/UserReviewSearch"
 import "../styles/NYTMRHC.css"
 import { Rage } from "../rage/Rage"
+import { EditReview } from "../edit/EditReview"
 
 
 
@@ -27,6 +28,7 @@ export const ApplicationViews = () => {
                 <Route path="profile/:userId" element={ <Profile /> } />
                 <Route path="profile/:userId/:reviewId" element={ <ProfileReview /> } />
                 <Route path="rage" element={ <Rage /> } />
+                <Route path="edit/:userId/:reviewId" element={<EditReview /> } />
 
             </Route>
         </Routes>

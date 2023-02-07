@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
+import "../styles/EditForm.css"
 
-export const NYTReviewForm = () => {
-    
+export const EditReview = () => {
     const navigate = useNavigate()
     const {reviewId} = useParams()
     const {userId} = useParams()
-    const [profileInfo, updateProfileInfo] = useState({
+    const [editReview, updateEditReview] = useState({
         userImage: "",
         userReview: ""
     })
@@ -26,7 +26,7 @@ export const NYTReviewForm = () => {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify(profileInfo)
+                body: JSON.stringify(editReview)
             })
                 .then(res => res.json())
                 .then(()=> {
@@ -39,45 +39,45 @@ export const NYTReviewForm = () => {
     
     
     
-    return <div className="postReviewForm">
-        <form className="review">
-            <h2 className="review__title">Create Your Review</h2>
+    return <div className="editReviewForm">
+        <form>
+            <h2 className="review__title">Edit Your Review</h2>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="reviewImage">Add Film Still to Your Review:</label>
+                    <label htmlFor="reviewImage">Change the Film Still for Your Review:</label>
                     <input
                         required autoFocus
                         id="reviewImage"
                         placeholder={`Enter an image URL`}
                         type="text"
                         className="form-control"
-                        value={profileInfo.userImage}
+                        value={editReview.userImage}
                         onChange={
                             (evt) => {
                                 // TODO: Update address property
-                                const copy = {...profileInfo}
+                                const copy = {...editReview}
                                 copy.userImage = evt.target.value
-                                updateProfileInfo(copy)
+                                updateEditReview(copy)
                             }
                         } />
                 </div>
             </fieldset>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="reviewBody">Compose Your Review:</label>
+                    <label htmlFor="reviewBody">Revise Your Review:</label>
                     <input
                         required autoFocus
                         id="reviewBody"
                         placeholder={`Type or Paste Your Review Here`}
                         type="text"
                         className="form-control"
-                        value={profileInfo.userReview}
+                        value={editReview.userReview}
                         onChange={
                             (evt) => {
                                 // TODO: Update address property
-                                const copy = {...profileInfo}
+                                const copy = {...editReview}
                                 copy.userReview = evt.target.value
-                                updateProfileInfo(copy)
+                                updateEditReview(copy)
                             }
                         } />
                 </div>
@@ -85,7 +85,7 @@ export const NYTReviewForm = () => {
             <button
                 onClick={(clickEvent) => handleUpdateButtonClick(clickEvent)}
                 className="btn btn-primary">
-                Post Review!
+                Edit Review!
             </button>
         </form>
     </div>
