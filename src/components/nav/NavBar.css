@@ -1,21 +1,50 @@
+@font-face {
+    font-family: Pragmata;
+    src: url(../styles/PragmataPro.ttf);
+  }
+
+  li {
+    font-size: 12px;
+    color: rgb(19, 19, 19)
+  }
+
 .navbar {
     display: flex;
     flex-wrap: nowrap;
-    justify-content: left;
-    position: fixed;
-    top: 0px;
-    width: 100%;
+    justify-content: space-evenly;
     background-color: dodgerblue;
-    border: 2px solid;
+    padding: 1rem;
+    border: 1px solid #111;
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: #111;
+    box-shadow: rgb(95, 173, 251) 6px 2px 16px 0px, rgb(153, 199, 246) -6px -2px 16px 0px;
+    height: 60px;
+    position: fixed;
+    width: 93%;
+    top: 0px;
     z-index: 1;
-}
-
-.navbar__item {
+  }
+  
+  .navbar__item {
     flex-basis: 20%;
     list-style-type: none;
-}
-
-.navbar__logout {
+    text-align: center;
+    margin: auto;
+  }
+  
+  .navbar__logout {
     margin-left: auto;
-}
+  }
+  
+  .navbar__link {
+    text-decoration: none;
+    color: rgb(19, 19, 19);
+    font-family: "Pragmata", sans-serif;
+    font-size: 12px;
+  }
+  
+  .navbar__link:hover {
+    text-decoration: underline;
+  }
 

@@ -82,11 +82,18 @@ export const EditReview = () => {
                         } />
                 </div>
             </fieldset>
-            <button
-                onClick={(clickEvent) => handleUpdateButtonClick(clickEvent)}
-                className="btn btn-primary">
-                Edit Review!
-            </button>
+            <div className="editButtons">
+                <button
+                    onClick={(clickEvent) => handleUpdateButtonClick(clickEvent)}
+                    className="btn btn-primary">
+                    Edit Review!
+                </button>
+                <button
+                    onClick={(clickEvent) => navigate(`../profile/${haterUserObject.id}`)}
+                    className="btn btn-primary">
+                    Return to Profile
+                </button>
+            </div>
         </form>
     </div>
 }

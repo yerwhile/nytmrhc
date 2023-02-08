@@ -162,10 +162,10 @@ export const UserReview = ({rageObjects, honoredReviews, getAllReviews, review})
     }
 
     return <section className="review">
-                <header>Movie Title: {review.nytTitle}</header>
-                <p>Movie Release Date: {review.nytDate}</p>
-                <p>NYT Critic: {review.nytReviewer}</p>
-                <p>NYTMRHC Reviewer: <Link to={`../profile/${review.userId}`}>{review.user.fullName}</Link></p>
+                <header>NYTMRHC User: <Link to={`../profile/${review.userId}`}>{review.user.fullName}</Link></header>
+                <p>Film Title: <i>{review.nytTitle}</i></p>
+                <p>Film Release Date: {review.nytDate}</p>
+                <p><i>NYT</i> Critic: {review.nytReviewer}</p>
                 <p>Rage Count: {review.rage}</p>
                 <Link to={`../profile/${review.userId}/${review.id}`}>See Full Review</Link>
                 <div className="review-buttons">
@@ -177,17 +177,17 @@ export const UserReview = ({rageObjects, honoredReviews, getAllReviews, review})
                     }
                     {
                         review.userId === haterUserObject.id
+                            ? editButton(review.id)
+                            : ""
+                    }
+                    {
+                        review.userId === haterUserObject.id
                             ? makeHonorsAvailable()
                             : ""
                     }
                     {
                         review.userId !== haterUserObject.id
                             ? makeRageAvailable(review, review.rage)
-                            : ""
-                    }
-                    {
-                        review.userId === haterUserObject.id
-                            ? editButton(review.id)
                             : ""
                     }
                 </div>

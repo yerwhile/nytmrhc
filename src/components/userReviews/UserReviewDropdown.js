@@ -5,7 +5,7 @@ export const UserReviewDropdown = ({setSearchTerms, setSearchResults, searchTerm
     
     
     return <div className="userReviews-dropdown">
-                <label htmlFor="userReviewerDropdown">Search by NYT Critics</label>
+                <label htmlFor="userReviewerDropdown">Search by <i>NYT</i> Critics</label>
                 <select name="nytReviewers"
                     className="select-box"
                     value={criticChoice}

@@ -5,12 +5,23 @@ import { NavBar } from "./nav/NavBar"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 import "./styles/NYTMRHC.css"
+import { useEffect, useState } from "react"
 
 
 export const NYTMRHC = () => {
 
 	const localHaterUser = localStorage.getItem("hater_user")
     const haterUserObject = JSON.parse(localHaterUser)
+
+	const [users, setUsers] = useState([])
+
+	useEffect(() => {
+		fetch(`http://localhost:8088/users`)
+			.then(res => res.json())
+			.then((data) => {
+				setUsers(data)
+			})
+	}, [])
 
 	return <Routes>
 		<Route path="/login" element={<Login />} />
@@ -19,7 +30,7 @@ export const NYTMRHC = () => {
 		<Route path="*" element={
 			<Authorized>
 				<>
-					<NavBar />
+					<NavBar users={users} />
 					<ApplicationViews />
 				</>
 			</Authorized>

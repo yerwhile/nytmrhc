@@ -8,13 +8,13 @@ export const NYTReviews = ({searchResults}) => {
     
     
 
-    <ul className="reviews">
+    <article className="reviews">
         {
             searchResults?.map(
                 (review) => <NYTReview key={review.date_updated} review={review} />
             )
         }
-    </ul>
+    </article>
 
     </>
 }

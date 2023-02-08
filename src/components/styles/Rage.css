@@ -1,7 +1,46 @@
-.rageReviews {
+div.rageRankings {
+    display: flex;
+}
+
+div.rageReviews {
     border: solid 3px black;
     border-radius: 5%;
     padding: 20px;
     margin: 10px;
-    width: 100%;
+    width: 60%;
+}
+
+div.rageUsers {
+    border: solid 3px black;
+    border-radius: 5%;
+    padding: 20px;
+    margin: 10px;
+    width: 40%;
+}
+
+.review-buttons {
+    display: flex;
+    width: 12rem;
+    justify-content: space-between;
+}
+
+.rageFlex {
+    display: flex;
+    justify-content: space-around;
+}
+
+.rageText {
+    width: 50%;
+}
+
+.rageImage {
+    width: 50%;
+}
+
+.rageUserItem {
+    margin-top: 20px;
+    text-decoration: none;
+    color: rgb(19, 19, 19);
+    font-family: "Pragmata";
+    font-size: 12px;
 }

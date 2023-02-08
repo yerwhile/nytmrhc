@@ -167,8 +167,8 @@ export const ProfileReviews = ({rageObjects, getAllReviews, honoredReviews, user
                 {
                     userReviews.map((userReview) => {
                         return <div className="review" key={userReview.id}>
-                                    <p>NYT Critic: {userReview.nytReviewer}</p>
-                                    <p>Film Title: {userReview.nytTitle}</p>
+                                    <p><i>NYT</i> Critic: {userReview.nytReviewer}</p>
+                                    <p>Film Title: <i>{userReview.nytTitle}</i></p>
                                     <p>Rage Count: {userReview.rage}</p>
                                     <Link to={`./${userReview.id}`}>See Full Review</Link>
                                     <div className="review-buttons">
@@ -180,17 +180,17 @@ export const ProfileReviews = ({rageObjects, getAllReviews, honoredReviews, user
                                         }
                                         {
                                             userReview.userId === haterUserObject.id
+                                                ? editButton(userReview.id)
+                                                : ""
+                                        }
+                                        {
+                                            userReview.userId === haterUserObject.id
                                                 ? makeHonorsAvailable(userReview.id)
                                                 : ""
                                         }
                                         {
                                             userReview.userId !== haterUserObject.id
                                                 ? makeRageAvailable(userReview, userReview.rage)
-                                                : ""
-                                        }
-                                        {
-                                            userReview.userId === haterUserObject.id
-                                                ? editButton(userReview.id)
                                                 : ""
                                         }
                                     </div>

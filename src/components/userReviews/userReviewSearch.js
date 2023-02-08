@@ -83,7 +83,7 @@ export const UserReviewSearch = () => {
     return (
         <div className="userReviews">
             <div className="userReviews-left">
-                <h2>Search User Reviews</h2>
+                <h3>Search User Reviews</h3>
                 <div>
                     <label htmlFor="userReviewsSearchBox">Search by any term:</label><br></br>
                     <input 
@@ -109,7 +109,7 @@ export const UserReviewSearch = () => {
                     setCriticChoice={setCriticChoice}/>
             </div>
             <div className="userReviews-right">
-                <h2>List of Found User Reviews</h2>
+                <h3>List of Found User Reviews</h3>
                 <UserReviews honoredReviews={honoredReviews} 
                     getAllReviews={getAllReviews} 
                     searchResults={searchResults}

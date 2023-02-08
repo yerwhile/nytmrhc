@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react"
-import { Link, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import "../styles/Reviews.css"
 
 export const ProfileReview = () => {
     const { reviewId } = useParams({})
     const [review, updateReview] = useState({})
  
+    const localHaterUser = localStorage.getItem("hater_user")
+    const haterUserObject = JSON.parse(localHaterUser)
+    const navigate = useNavigate()
   
  
     useEffect(() => {
@@ -17,14 +20,27 @@ export const ProfileReview = () => {
             })
     }, [reviewId])
 
-    
+    const editButton = (reviewId) => {
+        return <button onClick={() => {
+            navigate(`../edit/${haterUserObject.id}/${reviewId}`)
+        }} className="review__edit">Edit</button>
+    }
 
     return <section className='reviewFull' >
-            <header className='reviewFull__header'><Link to={`../profile/${review.userId}`}>{review?.user?.fullName}</Link>'s review of:</header>
-            <div>NYT Critic: {review?.nytReviewer}</div>
-            <div>Film Title: {review?.nytTitle}</div>
-            <img src={review?.userImage} height="200"/>
-            <div>Review: {review?.userReview}</div>
+            <h3 className='reviewFull__header'>
+                <Link to={`../profile/${review.userId}`}>{review?.user?.fullName}</Link>
+                's Review of {review?.nytReviewer}'s Review of <i>{review?.nytTitle}</i></h3>
+            <div className='reviewFull__body'>
+                <img src={review?.userImage} />
+                <p>{review?.userReview}</p>
+                <div className="review-buttons">
+                    {
+                        review.userId === haterUserObject.id
+                            ? editButton(review.id)
+                            : ""
+                    }
+                </div>
+            </div>
         </section>
 
 }
