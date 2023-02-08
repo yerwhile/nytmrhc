@@ -60,10 +60,10 @@ export const NYTReview = ({review}) => {
     }
 
     return <section className="review">
-                        <header>Film Title: {review.display_title}</header>
+                        <header>Film Title: <i>{review.display_title}</i></header>
                         <p>Rated: {review.mpaa_rating}</p>
                         <p>Movie Release Date: {review.opening_date}</p>
-                        <p>Reviewer: {properCapitalize(review.byline)}</p>
+                        <p>Critic: {properCapitalize(review.byline)}</p>
                         <div className="review-buttons">
                             {
                                 postReviewButton()

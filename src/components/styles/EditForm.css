@@ -4,3 +4,10 @@
     padding: 20px;
     margin: 10px;
 }
+
+.editButtons {
+    margin-top: 8px;
+    display: flex;
+    width: 20rem;
+    justify-content: space-between;
+}

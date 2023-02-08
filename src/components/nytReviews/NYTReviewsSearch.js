@@ -21,9 +21,9 @@ export const NYTReviewsSearch = () => {
     return (
         <div className="nytReviews">
             <div className="nytReviews-left">
-                <h2>Search NYT Critic Reviews</h2>
+                <h3>Search <i>NYT</i> Critic Reviews</h3>
+                <p>Find a NYT Review, and review the reviewer!</p>
                 <div>
-                    <label htmlFor="nytReviewsSearchBox">Search by any term:</label><br></br>
                     <input 
                         onChange={
                             (changeEvent) => {
@@ -41,7 +41,7 @@ export const NYTReviewsSearch = () => {
                 </div>
             </div>
             <div className="nytReviews-right">
-                <h2>List of Found NYT Reviews</h2>
+                <h3>List of Found <i>NYT</i> Reviews</h3>
                 <NYTReviews searchResults={searchResults} />
             </div>
             

@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 export const RageReviews = ({rageObjects, honoredReviews, rageReviews, getAllRageReviews}) => {
     const localHaterUser = localStorage.getItem("hater_user")
     const haterUserObject = JSON.parse(localHaterUser)
+
+    const navigate = useNavigate()
     
     
     const findHonoredReview = (currentReviewId) => {
@@ -138,6 +140,12 @@ export const RageReviews = ({rageObjects, honoredReviews, rageReviews, getAllRag
         }} className="review__delete">Delete</button>
     }
 
+    const editButton = (reviewId) => {
+        return <button onClick={() => {
+            navigate(`../edit/${haterUserObject.id}/${reviewId}`)
+        }} className="review__edit">Edit</button>
+    }
+
     const makeHonorsAvailable = (userReviewId) => {
         return undefined === honoredReviews.find(honoredReview => honoredReview.reviewId === userReviewId)
                     ? handleHonorButton(userReviewId)
@@ -153,21 +161,26 @@ export const RageReviews = ({rageObjects, honoredReviews, rageReviews, getAllRag
             : handleEnragedButton(userReview.id, currentRage)
     }
 
-    return <ol>
+    return <div className="rageList">
                 {
                     rageReviews.map((rageReview) => {
-                        return <li className="review" key={rageReview.id}>
+                        return <section className="review" key={rageReview.id}>
                                     <p>NYTMRHC User: {rageReview.user.fullName}</p>
-                                    <p>NYT Critic: {rageReview.nytReviewer}</p>
-                                    <p>Film Title: {rageReview.nytTitle}</p>
+                                    <p>Film Title: <i>{rageReview.nytTitle}</i></p>
+                                    <p><i>NYT</i> Critic: {rageReview.nytReviewer}</p>
                                     <p>Rage Count: {rageReview.rage}</p>
-                                    <Link to={`./${rageReview.id}`}>See Full Review</Link>
+                                    <Link to={`../profile/${rageReview.userId}/${rageReview.id}`}>See Full Review</Link>
                                     <div className="review-buttons">
                                         {
                                             haterUserObject.id === rageReview.userId
                                                 ? deleteButton(rageReview.id)
                                                 : ""
                                             
+                                        }
+                                        {
+                                            rageReview.userId === haterUserObject.id
+                                                ? editButton(rageReview.id)
+                                                : ""
                                         }
                                         {
                                             rageReview.userId === haterUserObject.id
@@ -180,8 +193,8 @@ export const RageReviews = ({rageObjects, honoredReviews, rageReviews, getAllRag
                                                 : ""
                                         }
                                     </div>
-                                </li>
+                                </section>
                     })
                 } 
-            </ol>
+            </div>
 }

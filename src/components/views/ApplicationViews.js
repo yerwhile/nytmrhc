@@ -7,6 +7,7 @@ import { UserReviewSearch } from "../userReviews/UserReviewSearch"
 import "../styles/NYTMRHC.css"
 import { Rage } from "../rage/Rage"
 import { EditReview } from "../edit/EditReview"
+import { EditProfile } from "../edit/EditProfile"
 
 
 
@@ -15,7 +16,7 @@ export const ApplicationViews = () => {
         <Routes>
             <Route path="/" element={
                 <div className="container">
-                    <h2>NYT Movie Review Haters Collective</h2>
+                    <h2><i>NYT</i> Movie Review Haters Collective</h2>
                     <h4>Where grudges are screened daily.</h4>
 
                     <Outlet />
@@ -29,6 +30,7 @@ export const ApplicationViews = () => {
                 <Route path="profile/:userId/:reviewId" element={ <ProfileReview /> } />
                 <Route path="rage" element={ <Rage /> } />
                 <Route path="edit/:userId/:reviewId" element={<EditReview /> } />
+                <Route path="edit/:userId" element={<EditProfile />} />
 
             </Route>
         </Routes>

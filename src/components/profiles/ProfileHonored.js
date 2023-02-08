@@ -177,8 +177,8 @@ export const ProfileHonored = ({rageObjects, getAllReviews, honoredReviews, user
                 {
                     (findUserHonoredReviews()).map((honoredReview) => {
                         return <div className="review" key={honoredReview.id}>
-                                    <p>NYT Critic: {honoredReview.nytReviewer}</p>
-                                    <p>Film Title: {honoredReview.nytTitle}</p>
+                                    <p><i>NYT</i> Critic: {honoredReview.nytReviewer}</p>
+                                    <p>Film Title: <i>{honoredReview.nytTitle}</i></p>
                                     <p>Rage Count: {honoredReview.rage}</p>
                                     <Link to={`./${honoredReview.id}`}>See Full Review</Link>
                                     <div className="review-buttons">
@@ -190,17 +190,17 @@ export const ProfileHonored = ({rageObjects, getAllReviews, honoredReviews, user
                                         }
                                         {
                                             honoredReview.userId === haterUserObject.id
+                                                ? editButton(honoredReview.id)
+                                                : ""
+                                        }
+                                        {
+                                            honoredReview.userId === haterUserObject.id
                                                 ? makeHonorsAvailable(honoredReview.id)
                                                 : ""
                                         }
                                         {
                                             honoredReview.userId !== haterUserObject.id
                                                 ? makeRageAvailable(honoredReview, honoredReview.rage)
-                                                : ""
-                                        }
-                                        {
-                                            honoredReview.userId === haterUserObject.id
-                                                ? editButton(honoredReview.id)
                                                 : ""
                                         }
                                     </div>

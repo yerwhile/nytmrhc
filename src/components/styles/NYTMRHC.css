@@ -19,21 +19,32 @@ textarea {
 
 body {
     padding: 0 3rem;
+    background-color: rgb(237, 239, 241);
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Pragmata", serif;
+  color: rgb(19, 19, 19);
   letter-spacing: 2px;
 }
 
 Link {
   font-family: "Pragmata", Arial, serif;
+  color: rgb(19, 19, 19);
 }
 
+button {
+  border: 1px solid;
+  border-radius: 20%;
+}
+
+
+div,
 header,
 p {
   margin-bottom: 1.5em;
   font-family: "Pragmata", Arial, sans-serif;
+  color: rgb(19, 19, 19);
 }
 
 .title--main {
@@ -41,7 +52,7 @@ p {
 }
 
 .container {
-  margin-top: 50px;
+  margin-top: 115px;
   position: relative;
 }
 

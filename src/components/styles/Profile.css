@@ -5,11 +5,11 @@
 .profile-left {
     display: flex;
     flex-direction: column;
-    width: 40%;
+    width: 50%;
 }
 
 .profile-right {
-    width: 60%;
+    width: 50%;
 }
 
 .profile-box {
@@ -17,4 +17,10 @@
     border-radius: 5%;
     padding: 20px;
     margin: 10px;
+}
+
+.review-buttons {
+    display: flex;
+    width: 12rem;
+    justify-content: space-between;
 }
