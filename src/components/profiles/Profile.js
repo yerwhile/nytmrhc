@@ -43,7 +43,7 @@ export const Profile = () => {
 
     useEffect(() => {
         getAllReviews()
-    }, [])
+    }, [userId])
 
     useEffect(() => {
         getAllHonoredReviews()
@@ -59,7 +59,7 @@ export const Profile = () => {
             .then((userArr) => {
                 setUser(userArr[0])
             })
-    }, [])
+    }, [userId])
 
     useEffect(() => {
         fetch(`http://localhost:8088/reviews?userId=${userId}&_sort=nytTitle&_expand=user`)

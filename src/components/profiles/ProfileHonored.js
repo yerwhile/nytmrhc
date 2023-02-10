@@ -180,7 +180,7 @@ export const ProfileHonored = ({rageObjects, getAllReviews, honoredReviews, user
                                     <p><i>NYT</i> Critic: {honoredReview.nytReviewer}</p>
                                     <p>Film Title: <i>{honoredReview.nytTitle}</i></p>
                                     <p>Rage Count: {honoredReview.rage}</p>
-                                    <Link to={`./${honoredReview.id}`}>See Full Review</Link>
+                                    <Link className="reviewLink" to={`./${honoredReview.id}`}>See Full Review</Link>
                                     <div className="review-buttons">
                                         {
                                             haterUserObject.id === honoredReview.userId

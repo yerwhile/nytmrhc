@@ -3,7 +3,7 @@ div.rageRankings {
 }
 
 div.rageReviews {
-    border: solid 3px black;
+    border: solid 3px #1a2f17;
     border-radius: 5%;
     padding: 20px;
     margin: 10px;
@@ -11,7 +11,7 @@ div.rageReviews {
 }
 
 div.rageUsers {
-    border: solid 3px black;
+    border: solid 3px #1a2f17;
     border-radius: 5%;
     padding: 20px;
     margin: 10px;
@@ -37,10 +37,19 @@ div.rageUsers {
     width: 50%;
 }
 
+.rageUserList {
+    padding: 20px;
+}
+
 .rageUserItem {
     margin-top: 20px;
     text-decoration: none;
-    color: rgb(19, 19, 19);
+    color: #053e65;
     font-family: "Pragmata";
-    font-size: 12px;
+    font-size: 16px;
+    font-weight: 580;
 }
+
+.rageUserItem:hover {
+    text-decoration: underline;
+  }

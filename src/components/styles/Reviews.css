@@ -1,7 +1,7 @@
 .review {
-    border: 2px dashed black;
+    border: 2px dashed #1a2f17;
     box-shadow: rgb(106, 178, 250) 3px 1px 8px 0px, rgb(153, 199, 246) -3px -1px 8px 0px;
-    background-color:bisque;
+    background-color:#dae6a2;
     padding: 20px;
     margin: 20px;
     margin-top: 30px;
@@ -28,7 +28,7 @@
 }
 
 .reviewFull {
-    border: solid 3px black;
+    border: solid 3px #1a2f17;
     border-radius: 5%;
     padding: 20px;
     margin: 10px;
@@ -36,12 +36,21 @@
 }
 
 .reviewFull__body {
-    border: 2px dotted black;
-    background-color:bisque;
+    border: 2px dotted #1a2f17;
+    background-color:#dae6a2;
     width: 60%;
     margin-top: 50px;
     padding: 20px;
     box-shadow: rgb(106, 178, 250) 3px 1px 8px 0px, rgb(153, 199, 246) -3px -1px 8px 0px;
+}
+
+.reviewLink {
+    text-decoration: none;
+    color: #053e65
+}
+
+.reviewLink:hover {
+    text-decoration: underline;
 }
 
 

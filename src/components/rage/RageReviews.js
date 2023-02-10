@@ -169,7 +169,7 @@ export const RageReviews = ({rageObjects, honoredReviews, rageReviews, getAllRag
                                     <p>Film Title: <i>{rageReview.nytTitle}</i></p>
                                     <p><i>NYT</i> Critic: {rageReview.nytReviewer}</p>
                                     <p>Rage Count: {rageReview.rage}</p>
-                                    <Link to={`../profile/${rageReview.userId}/${rageReview.id}`}>See Full Review</Link>
+                                    <Link className="reviewLink" to={`../profile/${rageReview.userId}/${rageReview.id}`}>See Full Review</Link>
                                     <div className="review-buttons">
                                         {
                                             haterUserObject.id === rageReview.userId

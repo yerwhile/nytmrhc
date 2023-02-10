@@ -22,7 +22,6 @@ export const ApplicationViews = () => {
                     <Outlet />
                 </div>
             }>
-
                 <Route path="nytReviews" element={ <NYTReviewsSearch /> } />
                 <Route path="nytReviews/:reviewId/:userId/create" element={ <NYTReviewForm /> } />
                 <Route path="userReviews" element={ <UserReviewSearch/> } />

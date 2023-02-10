@@ -14,6 +14,9 @@ export const NavBar = ({users}) => {
 
     return (
         <ul className="navbar">
+            <li className="navbar__item navbar__test" id="navbar__logo">
+                NYTMRHC
+            </li>
             <li className="navbar__item navbar__test">
                 <Link className="navbar__link" to="nytReviews">Search <i>NYT</i> Reviews</Link>
             </li>

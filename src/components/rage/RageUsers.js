@@ -31,7 +31,11 @@ export const RageUsers = ({users, rageReviews}) => {
     return <ol>
         {
             usersEnraged.map((userEnraged) => {
-                return <li className="rageUserItem"><Link to={`../profile/${userEnraged.userId}`}>{userEnraged.fullName}</Link></li>
+                return <li className="rageUserList" >
+                    <Link className="rageUserItem" to={`../profile/${userEnraged.userId}`}>{userEnraged.fullName}</Link>
+                    <br></br>
+                    (Total Rage Count: {userEnraged.rage})
+                    </li>
             })
         }
     </ol>

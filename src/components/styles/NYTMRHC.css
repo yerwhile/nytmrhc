@@ -24,13 +24,13 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Pragmata", serif;
-  color: rgb(19, 19, 19);
+  color: #1a2f17;
   letter-spacing: 2px;
 }
 
 Link {
   font-family: "Pragmata", Arial, serif;
-  color: rgb(19, 19, 19);
+  color: #1a2f17;
 }
 
 button {
@@ -44,7 +44,7 @@ header,
 p {
   margin-bottom: 1.5em;
   font-family: "Pragmata", Arial, sans-serif;
-  color: rgb(19, 19, 19);
+  color: #1a2f17;
 }
 
 .title--main {

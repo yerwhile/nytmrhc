@@ -33,9 +33,9 @@ fieldset {
     font-weight: 400;
     line-height: 1.5;
     color: #495057;
-    background-color: #fff;
+    background-color: rgb(237, 239, 241);
     background-clip: padding-box;
-    border: 1px solid #ced4da;
+    border: 1px solid rgb(237, 239, 241);
     border-radius: .25rem;
     -webkit-transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
@@ -50,7 +50,7 @@ fieldset {
     z-index: 1;
     min-height: 25rem;
     min-width: 45rem;
-    background-color: hsla(0,0%,100%,0.40);
+    background-color: rgb(237, 239, 241);
     background-blend-mode: overlay;
     background-repeat: no-repeat;
 }
