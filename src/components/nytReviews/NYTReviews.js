@@ -3,15 +3,14 @@
 import { NYTReview } from "./NYTReview"
 
 export const NYTReviews = ({searchResults}) => {
-    
-    return <>
-    
+
     
 
+    return <>
     <article className="reviews">
         {
             searchResults?.map(
-                (review) => <NYTReview key={review.date_updated} review={review} />
+                (review) => <NYTReview key={`${searchResults.indexOf(review)}`} review={review} />
             )
         }
     </article>
