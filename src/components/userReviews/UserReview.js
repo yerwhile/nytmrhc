@@ -166,7 +166,6 @@ export const UserReview = ({rageObjects, honoredReviews, getAllReviews, review})
                 <p>Film Title: <i>{review.nytTitle}</i></p>
                 <p>Film Release Date: {review.nytDate}</p>
                 <p><i>NYT</i> Critic: {review.nytReviewer}</p>
-                <p>Rage Count: {review.rage}</p>
                 <Link className="reviewLink" to={`../profile/${review.userId}/${review.id}`}>See Full Review</Link>
                 <div className="review-buttons">
                     {

@@ -1,4 +1,4 @@
-.editReviewForm {
+.editReviewForm, .editProfileForm {
     border: solid 3px #1a2f17;
     border-radius: 5%;
     padding: 20px;
